@@ -1,0 +1,31 @@
+.dirRtl{
+direction: rtl;
+}
+.menu-nav{
+	direction: rtl;
+	height: inherit;
+}
+.overflow-x{
+	overflow-x: hidden;
+}
+@media (min-width: 991px)
+{
+.menu-justify-fullscreen{
+	  -webkit-box-pack: center ;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center ;
+          justify-content: center ;
+            display: -webkit-box ;
+  display: -webkit-flex ;
+  display: -ms-flexbox ;
+  display: flex ;
+
+}
+}
+.footer{
+	bottom: 0;
+	position: relative;
+}
+.postImage{
+  width: 100%;height: auto;
+}
