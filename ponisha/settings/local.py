@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'widget_tweaks',
+    'jdatetime'
+
 ]
 
 MIDDLEWARE = [

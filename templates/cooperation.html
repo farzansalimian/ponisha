@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{%block content %}
+
+
+
+{% load widget_tweaks %}
+<div class="container mt-5">
+	<div class="my-2">
+	{{ form.non_field_errors }}
+	</div>
+  <form class='text-right' method="post" action="{% url 'registerUrl' %}">
+  	{% csrf_token %}
+  	    	  <div class="form-group row">
+      <label for="{{ form.fullName.id_for_label }}" class="col-sm-2 col-form-label">﻿نام و نام خانوادگی</label>
+      <div class="col-sm-10">
+   {{ form.fullName|add_class:"form-control"|attr:"placeholder:﻿نام و نام خانوادگی خود را وارد نمائيد" }}
+         </div>  	  	    
+      <div class="col-sm-10 push-sm-2 dirRtl">
+{{ form.fullName.errors }}         </div>
+    </div>
+  	  <div class="form-group row">
+      <label for="{{ form.birthdayDate.id_for_label }}" class="col-sm-2 col-form-label">تاریخ تولد</label>
+      <div class="col-sm-10">
+   {{ form.birthdayDate|add_class:"form-control"}}
+         </div>
+                     <div class="col-sm-10 push-sm-2 dirRtl">
+  	  	    {{ form.birthdayDate.errors }}
+         </div>
+    </div>
+  	  <div class="form-group row">
+      <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label">ایمیل</label>
+      <div class="col-sm-10">
+   {{ form.email|add_class:"form-control"|attr:"placeholder:ایمیل خود را وارد نمائيد " }}
+         </div>
+              <div class="col-sm-10 push-sm-2 dirRtl">
+  	  	    {{ form.email.errors }}
+         </div>
+    </div>
+
+  	  <div class="form-group row">
+      <label for="{{ form.phonenumber.id_for_label }}" class="col-sm-2 col-form-label">شماره همراه</label>
+      <div class="col-sm-10">
+   {{ form.phonenumber|add_class:"form-control"|attr:"placeholder:شماره همراه خود را وارد نمائيد" }}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+  	  	    {{ form.phonenumber.errors }}
+         </div>
+    </div>
+        <div class="form-group row">
+      <label for="{{ form.job.id_for_label }}" class="col-sm-2 col-form-label">شغل</label>
+      <div class="col-sm-10">
+   {{ form.job|add_class:"form-control"|attr:"placeholder:شغل خود را وارد نمائيد" }}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+            {{ form.job.errors }}
+         </div>
+    </div>
+            <div class="form-group row">
+      <label for="{{ form.city.id_for_label }}" class="col-sm-2 col-form-label">شهر</label>
+      <div class="col-sm-10">
+   {{ form.city|add_class:"form-control"|attr:"placeholder:محل سکونت خود را وارد نمائيد" }}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+            {{ form.city.errors }}
+         </div>
+    </div>
+             <div class="form-group row">
+      <label for="{{ form.Resume.id_for_label }}" class="col-sm-2 col-form-label">روزمه</label>
+      <div class="col-sm-10">
+   {{ form.Resume|add_class:"form-control-file"}}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+            {{ form.Resume.errors }}
+         </div>
+    </div>
+               <div class="form-group row">
+      <label for="{{ form.gender.id_for_label }}" class="col-sm-2 col-form-label">جنسیت</label>
+      <div class="col-sm-10  d-flex justify-content-start">
+   {{ form.gender|add_class:"custom-select"}}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+            {{ form.gender.errors }}
+         </div>
+    </div>
+                   <div class="form-group row">
+      <label for="{{ form.description.id_for_label }}" class="col-sm-2 col-form-label">توضیحات</label>
+      <div class="col-sm-10">
+   {{ form.description|add_class:"form-control"|attr:"placeholder:توضیحات خود را وارد نمائيد" }}
+         </div>
+               <div class="col-sm-10 push-sm-2 dirRtl">
+            {{ form.description.errors }}
+         </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <input type="submit" class="btn btn-primary" value="ارسال" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

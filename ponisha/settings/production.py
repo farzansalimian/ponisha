@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'widget_tweaks',
+    'jdatetime'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+    

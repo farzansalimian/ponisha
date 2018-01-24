@@ -2,15 +2,18 @@
 
 {%block content%}
 
-<div class="container my-5">
+<div class="container my-5  style="overflow-x:hidden" ">
 	{% for obj in posts %}
-	<div class="row dirRtl">  <div class="d-flex align-self-center col-12 col-md-4">
-    <a href="" style="height:auto;width: 100% ">
-    <img class="postImage" src="{{obj.image.url}}" alt={{obg.title}} ></a></div>
+	<div class="row dirRtl my-3"> 
+   <div class="d-flex align-self-center col-12 col-md-4">
+    <a href='{{ obj.get_absolute_url }}' target="blank">
+    <img class="postImage" src="{{obj.image.url}}" alt={{obj.title}} >
+  </a>
+  </div>
   <div class="align-self-center col-12 col-md-8 ">
-  <a href=""> 
+  <a href='{{ obj.get_absolute_url }}' target="blank"> 
   	<h5 class="mt-0">{{obj.title}}</h5></a> 
-    <p>{{obj.context|safe}}</p>
+    <p>{{obj.summary|safe}}</p>
     <small class="mr-3">{{obj.author}}</small>  <small>{{obj.createdDate}}</small>
   </div>
 

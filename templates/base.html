@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -18,7 +20,7 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جست و جو</button>
                     </form>
                 </div>
-                <div class="col-4 d-flex justify-content-center">اسم یا لوگو سایت</div>
+                <div class="col-4 d-flex justify-content-center"><h2>Gidour</h2></div>
                 <div class="col-4 d-flex justify-content-end">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModel" data-whatever="@mdo">ورود</button>
                 </div>
@@ -79,19 +81,19 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">صفحه اصلی</a>
+                            <a class="nav-link" href='{% url "homepageUrl" %}'>صفحه اصلی</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">درباره ما</a>
+                            <a class="nav-link" href='{% url "aboutusUrl" %}'>درباره ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">ارتباط با ما</a>
+                            <a class="nav-link" href='{% url "contactusViewUrl" %}'>ارتباط با ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">همکاری با ما</a>
+                            <a class="nav-link" href='{% url "cooperationViewUrl" %}'>همکاری با ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">عضویت</a>
+                            <a class="nav-link" href='{% url "registerUrl" %}'>عضویت</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">نقد و بررسی
@@ -143,7 +145,7 @@
                 <div class="col-3">پیوندها</div>
             </div>
             <div class="text-center">
-                .تمام حقوق محفوظ بوده و استفاده از مطالب سایت با ذکر منبع بلامانع است
+             تمام حقوق محفوظ بوده و استفاده از مطالب سایت با ذکر منبع بلامانع است
             </div>
         </div>
     </footer>

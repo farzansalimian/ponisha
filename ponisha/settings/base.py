@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'widget_tweaks',
+    'jdatetime'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "faaarzansalimian@gamail.com"
+EMAIL_HOST_PASSWORD = '@ui_teh#shinooSH$1394@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+    <div class="mt-5 overflow-x">
+    
+
+        <div class="container news-detail-back-color p-2 jumbotron-fluid jumbotron-sm-up">
+            <div class="row px-sm-2 " >
+            <div class="col-12 justify-content-end d-flex">
+          <h2 class=""> {{object.title}}</h2>
+            </div>
+             <div class="justify-content-between d-flex col-12 ">
+              <div>{{object.category_name}}</div>
+              <div>
+                <span class="mx-2">{{object.createdDate}}</span>
+                <span class="mx-2">{{object.author}}</span></div>
+                          </div>
+        </div> <div class="col-12"><hr> </div> 
+                    <div class="row px-sm-2 " >
+                                  <div class="col-12 justify-content-end d-flex">
+                                              <h3 class=""> {{object.summary|safe}}</h3>
+              
+
+</div>                                 <div class="justify-content-end d-flex col-12 ">
+                <div class="mx-2">تخمین زمان مطالعه : {{object.readTime}}</div>
+          </div>
+</div><div class="col-12"><hr> </div> 
+                <div class="justify-content-center row  px-sm-2 " >
+            <div class="col-12">
+                                <img src="{{object.image.url}}" width="100%" />
+            </div>
+        </div>
+            <div class="pt-5 px-sm-5 dirRtl">
+               {{object.context|safe}}
+            </div>
+           
+        </div>
+    </div>
+
+
+{% endblock %}
