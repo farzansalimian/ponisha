@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{%block content %}
+<div class="container my-5 dirRtl"> 
+	<div class="row">
+	<div class="col-2">نام کاربری:</div>
+	<div class="col-10">{{ request.user.username}}</div>
+	</div>
+		<div class="row my-3">
+	<div class="col-2">ایمیل:</div>
+	<div class="col-10">{{ request.user.email}}</div>
+	</div>
+	{% if request.user.profile.is_paid %}
+		<div class="row">
+	<div class="col-2">اشتراک ویژه:</div>
+	<div class="col-10">دارد</div>
+	</div>
+	{% else %}
+	<div class="row">
+	<div class="col-2">برای خرید اشتراک کلیک کنید</div>
+	<div class="col-10"><a href="/request" class="btn btn-info">خرید اشتراک</a></div>
+	</div>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block Gidour %}
+<h5 class="text-white badge-default py-3 px-2 gidour-color">Gidour</h5>
+ {% endblock %}

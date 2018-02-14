@@ -7,78 +7,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Gidour</title>
+    <meta name="description" content="تحلیل و بررسی" />
+    <meta property="og:title" content="Gidour" />
+    <meta property="og:description" content="تحلیل و بررسی" />
+    <meta property="og:url" content="http://farzansl.pythonanywhere.com/">
+     <meta property="og:image" content="https://www.w3schools.com/w3css/img_fjords.jpg" />
+     <link rel="shortcut icon" href="http://richpreview.com/favicon.ico" type="image/x-icon" />
+     
 </head>
 <body>
     <!-- header -->
-    <header class="bg-faded">
+    <header class="header-footer-color" style="">
         <!-- menuTop -->
-        <div class="overflow-x hidden-md-down">
+
+                <div class="overflow-x hidden-md-down">
             <div class="row d-flex px-2 py-2">
-                <div class="col-4">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 dirRtl" type="text" placeholder="جست و جو">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جست و جو</button>
-                    </form>
+                <div class="col align-self-end">
+
+                     {% if not user.is_authenticated %}
+                    <a href='{% url "login" %}' class="btn btn-primary">ورود</a>
+                     {% else %}
+                    <a class="btn btn-primary" type="button" href='{% url "logoutUrl" %}'>خروج</a>
+                     {% endif %}   
                 </div>
-                <div class="col-4 d-flex justify-content-center"><h2>Gidour</h2></div>
-                <div class="col-4 d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModel" data-whatever="@mdo">ورود</button>
+                <div class="col d-flex justify-content-center">
+                    {% block Gidour %}
+                   {% endblock %}
+                </div>
+                <div class="col d-flex justify-content-end align-self-end text-right">
+                   <div class="mx-2">
+                            <a class="text-gray-dark" href='{% url "aboutusUrl" %}'>درباره ما</a>
+                        </div>
+                        <div class="mx-2">
+                            <a class="text-gray-dark" href='{% url "contactusUrl" %}'>ارتباط با ما</a>
+                        </div>
+                        <div class="mx-2">
+                            <a class="text-gray-dark" href='{% url "cooperationUrl" %}'>همکاری با ما</a>
+                        </div>
+                        {% if not user.is_authenticated %}
+                        <div class="mx-2">
+                            <a class="text-gray-dark" href='{% url "registerUrl" %}'>ثبت نام</a>
+                        </div>
+                        {% else %}
+                        <div class="mx-2">
+                            <a class="text-gray-dark" href='{% url "profile" %}'>پروفایل</a>
+                        </div>
+                        {% endif %}
                 </div>
             </div>
         </div>
+           
         <!-- endMenuTop -->
 
         <!-- menuBottom -->
         <div class="menu-justify-fullscreen">
             <!-- nav -->
-            <nav class="navbar navbar-toggleable-md navbar-light menu-nav">
+            <nav class="navbar navbar-toggleable-md navbar-light menu-nav hidden-lg-up">
                 <div class="d-flex justify-content-between">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="hidden-lg-up">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModel" data-whatever="@mdo">ورود</button>
-                    </div>
-                    <!-- loginModel -->
-                    <div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="loginModelLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="loginModelLabel">ورود</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="dirRtl">
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="form-control-label">نام کاربری</label>
-                                            <input type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="form-control-label">گذر واژه</label>
-                                            <input class="form-control" id="message-text"></input>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                                    <button type="button" class="btn btn-primary mr-1">ورود</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- endLoginModel -->
+                    {% if not user.is_authenticated %}
+                    <a href='{% url "login" %}' class="btn btn-primary">ورود</a>
+                     {% else %}
+                    <a class="btn btn-primary" type="button" href='{% url "logoutUrl" %}'>خروج</a>
+                     {% endif %}                    </div>
                 </div>
                 <!-- navbarCollapse -->
-
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item hidden-lg-up">
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control  dirRtl" type="text" placeholder="جست و جو">
-                                <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit">جست و جو</button>
-                            </form>
+                                      <form method="GET" action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 ml-1 dirRtl" type="text" name="q" placeholder="جست و جو" />
+      <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="جست و جو" />
+</form>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href='{% url "homepageUrl" %}'>صفحه اصلی</a>
@@ -87,20 +91,27 @@
                             <a class="nav-link" href='{% url "aboutusUrl" %}'>درباره ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href='{% url "contactusViewUrl" %}'>ارتباط با ما</a>
+                            <a class="nav-link" href='{% url "contactusUrl" %}'>ارتباط با ما</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href='{% url "cooperationViewUrl" %}'>همکاری با ما</a>
+                            <a class="nav-link" href='{% url "cooperationUrl" %}'>همکاری با ما</a>
                         </li>
+                        {% if not user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href='{% url "registerUrl" %}'>عضویت</a>
+                            <a class="nav-link" href='{% url "registerUrl" %}'>ثبت نام</a>
                         </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href='{% url "profile" %}'>پروفایل</a>
+                        </li>
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">نقد و بررسی
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     {% for obj in categories %}
-                                <a class="dropdown-item" href="#">{{obj.category_name}}</a>
+                                <a class="dropdown-item" href="{% url 'postsByCategoriesUrl' obj.category_name %}">{{obj.category_name}}
+                                </a>
                                     {% endfor %}
                             </div>
                         </li>
@@ -112,42 +123,61 @@
         </div>
         <!-- endMenuBottom -->
     </header>
+     <div class="overflow-x hidden-md-down py-2 border-top-bottom-style">
+            <div class="row d-flex px-2 py-2 justify-content-between">
+                    <div class="col">
+
+                    <form method="GET" action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 dirRtl" type="text" name="q" placeholder="جست و جو" />
+      <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="جست و جو" />
+</form>
+                </div>
+                <div class="col dirRtl">
+                                                <a class="mx-2" href='{% url "homepageUrl" %}'>
+                                                    <img src="{% static 'pageImages/home.png' %}">
+                                                </a>
+
+                                {% for obj in categories %}
+                                <a class="mx-2 text-gray-dark font-weight-bold" href="{% url 'postsByCategoriesUrl' obj.category_name %}">{{obj.category_name}}
+                                </a>
+                                    {% endfor %}
+                                                          </div>
+                                </div>
+        </div>
     <!-- endHeader -->
 {% block content %}
 {% endblock %}
     <!-- footer -->
-    <footer class="footer">
-        <div class="w-100 bg-inverse text-white overflow-x">
-            <div class="row text-center p-5">
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
-                <div class="col-3">پیوندها</div>
+    <footer class="footer header-footer-color">
+        <div class="w-100 overflow-x justify-content-between d-flex p-5 text-right dirRtl">
+            <div class="row">
+                  <div class="d-md-flex flex-md-column mx-4 my-2">
+                <div class=""><a class="text-gray-dark" href='{% url "registerUrl" %}'>ثبت نام</a></div>
+                <div class=""><a class="text-gray-dark" href='{% url "aboutusUrl" %}'>درباره ما</a></div>
+                <div class=""><a class="text-gray-dark" href='{% url "contactusUrl" %}'>ارتباط با ما</a></div>
+                <div class=""><a class="text-gray-dark" href='{% url "cooperationUrl" %}'>همکاری با ما</a></div>
             </div>
-            <div class="text-center">
+                        <div class="d-md-flex flex-md-column mx-4 my-2">
+                             {% for obj in categories %}
+                <div class=""> 
+                 <a class="text-gray-dark" href="{% url 'postsByCategoriesUrl' obj.category_name %}">{{obj.category_name}}
+                                </a></div>{% endfor %}
+            </div>
+                   <div class="d-md-flex flex-md-column mx-4 my-2">
+                <div class=""><a class="text-gray-dark" href=''>گوگل پلاس</a></div>
+                <div class=""><a class="text-gray-dark" href=''>توئیتر</a></div>
+                <div class=""><a class="text-gray-dark" href=''>اینستاگرام</a></div>
+                <div class=""><a class="text-gray-dark" href=''>تلگرام</a></div>
+            </div>
+            </div>
+            <div class="">
+                               <div class="">
+
+            <h2 class="text-white badge-default py-5 px-2 gidour-color">Gidour</h2>
+            </div></div></div>
+                     <div class="text-center">
              تمام حقوق محفوظ بوده و استفاده از مطالب سایت با ذکر منبع بلامانع است
             </div>
-        </div>
     </footer>
     <!-- endFooter -->
 

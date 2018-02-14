@@ -25,7 +25,8 @@ SECRET_KEY = '+lm434pf21vd549r(56%-y63va(w97vafsdqt#4o*p3553kob@ap9lr#asdv0x2x9v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gidour.com']
+
 
 # Application definition
 
@@ -42,7 +43,10 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'widget_tweaks',
-    'jdatetime'
+    'jdatetime',
+    'suds',
+    'django.contrib.postgres',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'website.context_processors.categories_list'
-
+                'website.context_processors.categories_list',
             ],
         },
     },
@@ -138,4 +141,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
-    

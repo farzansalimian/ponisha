@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.forms import SelectDateWidget
-
+from .models import PostComments
 
 User = get_user_model()
 
@@ -23,13 +23,19 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("تکرار گذرواژه صحیح نمی باشد")
         return password2
 
+    def clean_email(self):
+        # Check that the given email is exist already or not
+        email = self.cleaned_data.get("email")
+        if( User.objects.filter(email=self.cleaned_data.get("email")) ):
+            raise forms.ValidationError("این ایمیل قبلا در سایت ثبت شده است")
+        return email
+        
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super(RegisterForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.is_active = False
         # create a new user hash for activating email.
-
         if commit:
             user.save()
         return user
@@ -42,7 +48,7 @@ class ContactForm(forms.Form):
     fullName = forms.CharField(max_length=100)
 
 
-class Cooperation(forms.Form):
+class CooperationForm(forms.Form):
     GENDER_CHOICES = (
         ('Male', 'مرد'),
         ('Female', 'زن'),
@@ -53,8 +59,18 @@ class Cooperation(forms.Form):
     phonenumber = forms.CharField(max_length=100)
     job = forms.CharField(max_length=100)
     city = forms.CharField(max_length=100)
-    Resume = forms.FileField(required=False)
+    Resume = forms.FileField(required=False, widget = forms.FileInput)
     gender = forms.ChoiceField(choices = GENDER_CHOICES)
     description = forms.CharField(widget=forms.Textarea, required=False)
 
+class UserCommentForm(forms.ModelForm):
+    class Meta:
+        model = PostComments
+        fields = ('comment',)
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = PostComments
+        fields = ('mail','comment','fullName')
 
+class SearchForm(forms.Form):
+    search_query = forms.CharField(max_length=100)

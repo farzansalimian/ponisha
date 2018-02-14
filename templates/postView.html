@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {%block content%}
 
@@ -22,21 +23,94 @@
                                               <h3 class=""> {{object.summary|safe}}</h3>
               
 
-</div>                                 <div class="justify-content-end d-flex col-12 ">
+</div>                    
+                       <div class="col-12 col-md-6">
+                <div class="mx-2">
+                  <a href="https://telegram.me/share/url?url=http://farzansl.pythonanywhere.com{{request.path|urlencode}}&text={{object.summary|striptags}}" >
+                  <img src="{% static 'pageImages/telegram.png' %}" />
+                  </a>
+                     <a href="http://twitter.com/share?text={{object.summary|striptags}}&url=http://farzansl.pythonanywhere.com{{request.path|urlencode}}" target="_blank" title="Click to post to Twitter">
+                  <img src="{% static 'pageImages/twitter.png' %}" />
+                  </a>
+                     <a href="https://plus.google.com/share?url=http://farzansl.pythonanywhere.com{{request.path|urlencode}}">
+                  <img src="{% static 'pageImages/google.png' %}" />
+                  </a>
+                </div>
+          </div>
+  <div class="justify-content-end d-flex col-12 col-md-6">
                 <div class="mx-2">تخمین زمان مطالعه : {{object.readTime}}</div>
           </div>
-</div><div class="col-12"><hr> </div> 
+
+</div><div class="col-12"><hr> </div> </div>
                 <div class="justify-content-center row  px-sm-2 " >
             <div class="col-12">
                                 <img src="{{object.image.url}}" width="100%" />
             </div>
         </div>
-            <div class="pt-5 px-sm-5 dirRtl">
+            <div class="pt-5 px-sm-5 dirRtl container news-detail-back-color p-2 jumbotron-fluid jumbotron-sm-up">      
+<div class="col-12"><hr> </div>
                {{object.context|safe}}
             </div>
            
-        </div>
+<div class="col-12"><hr> </div>
+           <div class="">
+
+
+{% load widget_tweaks %}
+<div class="container mt-5 dirRtl">
+  <div class="my-2">
+  {{ form.non_field_errors }}
+  </div>
+             <form action="{{ object.get_absolute_url }}" method="post" class='text-right'>
+    {% csrf_token %}
+    {% if not user.is_authenticated %}
+<div class="form-group row d-flex justify-content-center">
+      <div class="col-sm-5 my-2">
+   {{ form.fullName|add_class:"form-control"|attr:"placeholder:﻿نام و نام خانوادگی خود را وارد نمایيد*" }}
+         </div>   
+               <div class="col-sm-5 my-2">
+   {{ form.mail|add_class:"form-control"|attr:"placeholder:ایمیل خود را وارد نمایيد*" }}
+         </div>        
+      <div class="col-sm-10 push-sm-2">
+{{ form.fullName.errors }}         </div>
+
+
+              <div class="col-sm-10 push-sm-2 ">
+            {{ form.mail.errors }}
+         </div>
     </div>
 
-
+    {% endif %}
+            <div class="form-group row">
+      <div class="col-sm-12">
+   {{ form.comment|add_class:"form-control"|attr:"placeholder:دیدگاه" }}
+         </div>           
+      <div class="col-sm-10 push-sm-2">
+{{ form.comment.errors }}         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+    <input type="submit" value="ارسال" class="btn btn-primary" />
+</div>
+</form>
+           </div>
+<div class="dirRtl">
+  <div class="border-top-bottom-style p-2 comment-color my-5">نظر مخاطبان</div>
+{%  for obj in Comments%}
+<div class="media">
+  <img class="d-flex ml-3" src="{% static 'pageImages/userImage.png' %}"" style="width:auto;max-height: 64px; " alt="User image">
+  <div class="media-body text-right">
+    <h5 class="mt-0">
+    {{obj.userName}}{% if obj.fullName %}-{{obj.fullName}}{% endif %}
+  </h5>
+    {{obj.comment}}
+  </div>
+</div>
+ <div class="col-12"><hr> </div> 
+{% endfor %}</div>
+      </div>
+    </div>
 {% endblock %}
+  
+{% block Gidour %}
+<h5 class="text-white badge-default py-3 px-2 gidour-color">Gidour</h5>
+ {% endblock %}

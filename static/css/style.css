@@ -23,9 +23,29 @@ direction: rtl;
 }
 }
 .footer{
-	bottom: 0;
-	position: relative;
-}
+    display: table-row;
+    height: 0;}
 .postImage{
   width: 100%;height: auto;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: table;
+}
+.header-footer-color{
+  background-color: #bebebe;
+}
+.gidour-color{
+  background-color: #394f06;
+}
+.border-top-bottom-style{
+  border-top: solid ;border-bottom:solid ;border-color: #394f06;
+}
+.comment-color{
+  background-color: #e8e8e8;
+}
+.slidShowBorder{
+  border: thin solid;
 }

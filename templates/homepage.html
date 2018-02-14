@@ -1,9 +1,94 @@
 {% extends "base.html" %}
-
 {%block content%}
-
 <div class="container my-5  style="overflow-x:hidden" ">
-	{% for obj in posts %}
+  {% if slideShow %}
+    {% for obj in slideShow %}
+  <div class="row p-2 slidShowBorder">
+<div class="col-12 col-md-6">
+<div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <a href="{{obj.image1.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image1.url}}" alt="First slide">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="{{obj.image2.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image2.url}}" alt="Second slide">
+      </a>
+    </div>
+    <div class="carousel-item">
+            <a href="{{obj.image3.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image3.url}}" alt="Third slide">
+    </a>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<div class="text-right col-12 col-md-6 align-self-center">
+  {{obj.context|safe}}
+</div>
+</div>
+{% endfor %}
+{% endif %}
+{% if categorySlideShow %}
+ {% for obj in categorySlideShow %}
+  <div class="row slidShowBorder p-2">
+<div class="col-12 col-md-6">
+<div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+   <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <a href="{{obj.image1.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image1.url}}" alt="First slide">
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="{{obj.image2.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image2.url}}" alt="Second slide">
+      </a>
+    </div>
+    <div class="carousel-item">
+            <a href="{{obj.image3.url}}">
+      <img class="d-block img-fluid postImage" src="{{obj.image3.url}}" alt="Third slide">
+    </a>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<div class="text-right col-12 col-md-6  align-self-center">
+  {{obj.context|safe}}
+</div>
+</div>
+{% endfor %}
+{% endif %}
+
+	{% for obj in object_list %}
 	<div class="row dirRtl my-3"> 
    <div class="d-flex align-self-center col-12 col-md-4">
     <a href='{{ obj.get_absolute_url }}' target="blank">
@@ -18,7 +103,37 @@
   </div>
 
 </div>
+<hr class="bg-inverse" />
 	{% endfor %}
 </div>
 
+{% if is_paginated %}
+  <ul class="pagination d-flex justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a  href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}" class="mr-2">&laquo;قبلی&nbsp;
+</a></li>
+    {% else %}
+      <li class="disabled mr-2"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active mr-2"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?{{ request.GET.urlencode }}&page={{ i }}" class="mr-2">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li><a  href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}" class="mr-2">بعدی&nbsp;&raquo;
+</a></li>
+    {% else %}
+      <li class="disabled mr-2"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
 {% endblock %}
+
+{% block Gidour %}
+<h1 class="text-white badge-default py-5 px-2 gidour-color">Gidour</h1>
+ {% endblock %}
+
+ 

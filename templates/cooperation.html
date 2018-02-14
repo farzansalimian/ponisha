@@ -9,7 +9,7 @@
 	<div class="my-2">
 	{{ form.non_field_errors }}
 	</div>
-  <form class='text-right' method="post" action="{% url 'registerUrl' %}">
+  <form class='text-right' method="post" action="{% url 'cooperationUrl' %}" enctype="multipart/form-data">
   	{% csrf_token %}
   	    	  <div class="form-group row">
       <label for="{{ form.fullName.id_for_label }}" class="col-sm-2 col-form-label">﻿نام و نام خانوادگی</label>
@@ -101,3 +101,7 @@
   </form>
 </div>
 {% endblock %}
+
+{% block Gidour %}
+<h5 class="text-white badge-default py-3 px-2 gidour-color">Gidour</h5>
+ {% endblock %}

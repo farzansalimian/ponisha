@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if messages %}
+<div class="alert messages text-center dirRtl">
+    <b>{{ messages }}</b><br/>
+    </div>
+{% endif %}
+{% if form.errors %}
+<div class="my-5 d-flex justify-content-center alert alert-info container dirRtl">
+<p>نام کاربری یا گذرواژه اشتباه است لطفا دوباره اقدام کنید</p>
+</div>
+{% endif %}
+
+{% if next %}
+    <div class="my-5 d-flex justify-content-center alert alert-info container dirRtl">
+    {% if user.is_authenticated %}
+    <p>برای دیدن این صفحه باید اکانت خود را ارتقاء بدهید</p>
+    {% else %}
+    
+    <p>برای دیدن این صفحه باید وارد شوید</p>
+    {% endif %}
+    </div>
+
+ {% else %}
+{% if user.is_authenticated %}
+<div class="my-5  alert alert-info container">
+<p class="d-flex justify-content-center">برای خروج کلیک کنید</p>
+<div class="d-flex justify-content-center">
+<a class="btn btn-info" type="button" href='{% url "logoutUrl" %}'>خروج</a>
+</div>
+</div>
+{% endif %}
+{% endif %}
+{% load widget_tweaks %}
+
+{% if not user.is_authenticated %}
+    <div class="d-flex justify-content-center my-5">
+<div class="container">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">نام کاربری</label>
+      <div class="col-sm-10">
+        {{ form.username|add_class:"form-control"|attr:"placeholder:نام کاربری" }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">گذرواژه</label>
+      <div class="col-sm-10">
+        {{ form.password|add_class:"form-control"|attr:"placeholder:گذرواژه خود را وارد کنید" }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <input type="submit" value="ورود" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </div>
+</form>
+      </div>
+    </div>
+{# Assumes you setup the password_reset view in your URLconf #}
+{% endif %}
+
+{% endblock %}
+
+{% block Gidour %}
+<h5 class="text-white badge-default py-3 px-2 gidour-color">Gidour</h5>
+ {% endblock %}

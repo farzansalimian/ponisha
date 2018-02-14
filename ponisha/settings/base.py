@@ -25,7 +25,7 @@ SECRET_KEY = '+lm434p549r(5b46%-y63va(w97vqt#4o*p3ob@ap9lr0x2x9v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gidour.com']
 
 # Application definition
 
@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'widget_tweaks',
-    'jdatetime'
+    'jdatetime',
+    'suds',
+    'django.contrib.postgres',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'website.context_processors.categories_list'
+                'website.context_processors.categories_list',
 
             ],
         },
@@ -140,7 +143,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "faaarzansalimian@gamail.com"
+EMAIL_HOST_USER = "faaarzansalimian@gmail.com"
 EMAIL_HOST_PASSWORD = '@ui_teh#shinooSH$1394@'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
